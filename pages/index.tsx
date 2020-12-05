@@ -1,16 +1,10 @@
-import Head from 'next/head'
+import Navigation from '@components/Navigation';
 import styled from 'styled-components';
 
 export default function Home() {
   return (
-    <Container>
-      Hello
-    </Container>
+    <div>
+      <Navigation />
+    </div>
   )
 }
-
-
-const Container = styled.h1`
-  border: 3px solid red;
-  height: 90vh;
-`
