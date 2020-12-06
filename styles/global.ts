@@ -5,6 +5,10 @@ export default createGlobalStyle`
     font-family: 'Univers-bold';
     src: url('/fonts/univers-condensedbold.ttf');
   }
+  @font-face {
+    font-family: 'Univers-light';
+    src: url('/fonts/univers-light.ttf');
+  }
 
   html,
   body {

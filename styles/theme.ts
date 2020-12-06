@@ -1,9 +1,22 @@
-export type TTheme = {
+export type TColors = {
   lightgray: string;
+  darkgray: string;
+}
+
+export type TTheme = {
+  colors: TColors;
+  fonts: { bold: string; light: string }
 };
 
-const theme = {
-  lightgray: '#ebebeb',
+const theme: TTheme = {
+  colors: {
+    lightgray: '#ebebeb',
+    darkgray: '#2e2e2e'
+  },
+  fonts: {
+    bold: 'Univers-bold',
+    light: 'Univers-light',
+  }
 }
 
 export default theme;
