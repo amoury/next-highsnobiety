@@ -2,6 +2,8 @@ import TeaserCard from '@components/TeaserCard';
 import Navigation from '@components/Navigation';
 import styled from 'styled-components';
 import ProductCard from '@components/ProductCard';
+import Button from '@components/Button';
+import CampaignCard from '@components/CampaignCard';
 
 type TSectionBorder = {
   edge?: 'top' | 'bottom' | 'left' | 'right'
@@ -13,7 +15,7 @@ type TListingSectionDir = {
 
 export default function Home(): JSX.Element {
   return (
-    <div>
+    <div style={{ marginBottom: '100px' }}>
       <Navigation />
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <ListingSection dir="column">
@@ -24,6 +26,14 @@ export default function Home(): JSX.Element {
 
       <div>
         <ProductCard />
+
+        <Button />
+        <div style={{ margin: '20px 0', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '1200px', gridColumnGap: '25px' }}>
+          <CampaignCard title='COLETTE MON AMOUR BY HIGHSNOBIETY - TOKYO EDITION' />
+          <CampaignCard title='ADIDAS SPEZIAL' />
+          <CampaignCard title='HIGHSNOBIETY JAZZ TV: A NEWPORT JAZZ PROGRAM' />
+
+        </div>
       </div>
     </div>
   )
