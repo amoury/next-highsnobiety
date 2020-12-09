@@ -1,6 +1,7 @@
 import TeaserCard from '@components/TeaserCard';
 import Navigation from '@components/Navigation';
 import styled from 'styled-components';
+import ProductCard from '@components/ProductCard';
 
 type TSectionBorder = {
   edge?: 'top' | 'bottom' | 'left' | 'right'
@@ -19,6 +20,10 @@ export default function Home(): JSX.Element {
           <TeaserCard style='horizontal' title="Hungry: The High Priestess of Distorted Drag" />
           <TeaserCard style='horizontal' title="MEET THE ARTISTS IN SOCIAL CLUB SELTZER’S CREATE THE CLUB CAMPAIGN adfasd asd fasdf asdf asdf asdf"/>
         </ListingSection>
+      </div>
+
+      <div>
+        <ProductCard />
       </div>
     </div>
   )

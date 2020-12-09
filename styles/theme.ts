@@ -5,7 +5,7 @@ export type TColors = {
 
 export type TTheme = {
   colors: TColors;
-  fonts: { bold: string; light: string }
+  fonts: { bold: string; light: string; regular: string }
 };
 
 const theme: TTheme = {
@@ -16,6 +16,7 @@ const theme: TTheme = {
   fonts: {
     bold: 'Univers-bold',
     light: 'Univers-light',
+    regular: 'Univers-regular',
   }
 }
 

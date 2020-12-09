@@ -9,6 +9,10 @@ export default createGlobalStyle`
     font-family: 'Univers-light';
     src: url('/fonts/univers-light.ttf');
   }
+  @font-face {
+    font-family: 'Univers-regular';
+    src: url('/fonts/univers-regular.ttf');
+  }
 
   html,
   body {
