@@ -16,7 +16,7 @@ const CampaignCard = ({ title }: TProps): JSX.Element => {
         <Title>
           {title} 
         </Title>
-        <Button />
+        <Button title='Shop Now' />
       </Details>
     </Card>
   )

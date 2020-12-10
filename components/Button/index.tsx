@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
-const Button = (): JSX.Element => {
+type TProps = {
+  title: string;
+  disabled?: boolean;
+}
+
+const Button = ({ title, disabled = false, }: TProps): JSX.Element => {
   return (
-    <Btn>
-      Shop Now
+    <Btn disabled={disabled}>
+      {title}
     </Btn>
   )
 }
@@ -12,7 +17,7 @@ const Btn = styled.button`
   background-color: black;
   color: white;
   cursor: pointer;
-  padding: 12px 20px;
+  padding: 14px 20px;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 0.7em;
@@ -22,6 +27,10 @@ const Btn = styled.button`
 
   &:hover {
     background-color: rgba(0,0,0,0.85);
+  }
+
+  &:disabled {
+    background-color: #ccc;
   }
 `;
 
