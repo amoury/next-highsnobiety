@@ -12,12 +12,7 @@ type TListingSectionDir = {
 
 export default function Home(): JSX.Element {
   return (
-    <div style={{ marginBottom: '100px' }}>
-      <Navigation />
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <ProductDetail /> 
-      </div>
-    </div>
+    <ProductDetail /> 
   )
 }
 
