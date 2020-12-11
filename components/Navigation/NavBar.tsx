@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { IconContext } from 'react-icons';
 import { FiSearch } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
@@ -12,17 +14,21 @@ type TProps = {
 }
 
 const NavBar = ({ navItems, showSearch }: TProps): JSX.Element => {
+  const router = useRouter();
+
   return (
     <Nav>
-      <Logo>
+      <Logo onClick={() => router.push('/')}>
         <Image src='/assets/img/logo.svg' alt='main logo' width={160} height={28} />
       </Logo>      
       <Menu>
         <MenuList>
           {navItems.map(item => (
-            <a key={item.id} href={item.href}>
-              <li>{item.title}</li>
-            </a>
+            <Link key={item.id} href={item.href}>
+              <a>
+                <li>{item.title}</li>
+              </a>
+            </Link>
           ))}
         </MenuList>
       </Menu>
@@ -33,7 +39,7 @@ const NavBar = ({ navItems, showSearch }: TProps): JSX.Element => {
               <li>Shop</li>
             </a>
             <li className='icon'><FiSearch onClick={showSearch} /></li>
-            <li className='icon'><VscAccount /></li>
+            <li className='icon' onClick={() => router.push('/account/login')}><VscAccount /></li>
             <li className='icon'><BsBag /></li>
           </MenuList>
         </IconContext.Provider>
@@ -50,6 +56,7 @@ const Nav = styled.nav`
 
 const Logo = styled.div`
   flex: 1;
+  cursor: pointer;
 `;
 
 const Menu = styled.div``;
