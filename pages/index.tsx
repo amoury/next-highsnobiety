@@ -1,4 +1,3 @@
-import Navigation from '@components/Navigation';
 import styled from 'styled-components';
 import ProductDetail from '@components/ProductDetail';
 

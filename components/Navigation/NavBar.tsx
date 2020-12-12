@@ -25,7 +25,7 @@ const NavBar = ({ navItems, showSearch }: TProps): JSX.Element => {
         <MenuList>
           {navItems.map(item => (
             <Link key={item.id} href={item.href}>
-              <a>
+              <a className={router.pathname.includes(item.title.toLowerCase()) && 'active'}>
                 <li>{item.title}</li>
               </a>
             </Link>
@@ -36,7 +36,7 @@ const NavBar = ({ navItems, showSearch }: TProps): JSX.Element => {
         <IconContext.Provider value={{ size: '1.2em' }}>
           <MenuList>
             <Link href="/shop">
-              <a>
+              <a className={router.pathname.includes('shop') && 'active'}>
                 <li>Shop</li>
               </a>
             </Link>
@@ -84,6 +84,11 @@ const MenuList = styled.ul`
       width: 0;
       opacity: 0;
       transition: width 0.3s ease-in-out;
+    }
+
+    &.active::after {
+      opacity: 1;
+      width: 100%;
     }
 
     &:hover::after {
