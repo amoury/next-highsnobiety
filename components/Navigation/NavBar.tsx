@@ -35,9 +35,11 @@ const NavBar = ({ navItems, showSearch }: TProps): JSX.Element => {
       <Misc>
         <IconContext.Provider value={{ size: '1.2em' }}>
           <MenuList>
-            <a href="#">
-              <li>Shop</li>
-            </a>
+            <Link href="/shop">
+              <a>
+                <li>Shop</li>
+              </a>
+            </Link>
             <li className='icon'><FiSearch onClick={showSearch} /></li>
             <li className='icon' onClick={() => router.push('/account/login')}><VscAccount /></li>
             <li className='icon'><BsBag /></li>

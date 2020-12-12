@@ -12,11 +12,11 @@ const ProductCard = ({ image, title, price }: TProductCardProps): JSX.Element =>
     <Card>
       <a href="#">
         <ImageWrapper>
-          <Image src="/assets/img/products/jacket.jpg" alt="Jacket" layout="responsive" width={200} height={250} />
+          <Image src={image} alt="Jacket" layout="responsive" width={200} height={250} />
         </ImageWrapper>
         <Details>
-          <Title>Adidas x Wales Bonner - Rock Blouson Brown</Title>
-          <Price>$300.00 USD</Price>
+          <Title>{title}</Title>
+          <Price>{`$${price} USD`}</Price>
         </Details>
       </a>
     </Card>
@@ -24,10 +24,12 @@ const ProductCard = ({ image, title, price }: TProductCardProps): JSX.Element =>
 }
 
 const Card = styled.div`
-  width: 400px;
+  max-width: 100%;
+  width: 100%;
 `;
 
-const ImageWrapper = styled.div``;
+const ImageWrapper = styled.div`
+`;
 
 const Details = styled.div`
   margin: 10px 0;
