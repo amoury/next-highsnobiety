@@ -1,27 +1,26 @@
 import styled from 'styled-components'
-import { useForm } from "react-hook-form";
+
 import Section from '@components/Section'
-import Input from '@components/Input'
+
 import Button from '@components/Button';
+import AuthForm from '@components/AuthForm';
 
 const Login = (): JSX.Element => {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data) => alert(JSON.stringify(data));
-
   return (
     <Wrapper>
       <Section title="Log in to your account" edge="top">
         <p>Already have an account? Log in now.</p>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input type="email" name="email" label="Email" ref={register} />    
-          <Input type="password" name="password" label="Password" ref={register} />    
-
-          <Button title="Log in" type="submit" fullWidth={false} />  
-        </form>
+        <AuthForm buttonText="Log in" />
+        
       </Section> 
-      <Section title="Not a member yet?" edge="top" />
+      <Section title="Not a member yet?" edge="top">
+        <p>Sign up to create your new account.</p>
+        <ButtonWrapper>
+          <Button title="Sign up" basic fullWidth={false} redirectTo="/account/signup" />
+        </ButtonWrapper>
+      </Section>
+
     </Wrapper>
   )
 }
@@ -33,6 +32,9 @@ const Wrapper = styled.div`
   grid-column-gap: 35px;
 `;
 
+const ButtonWrapper = styled.div`
+  margin: 40px 0;
+`;
 
 
 export default Login

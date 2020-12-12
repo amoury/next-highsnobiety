@@ -10,10 +10,10 @@ export type TNavItem = {
 }
 
 const navItems: Array<TNavItem> = [
-  { id: 1, title: 'Latest', href: '#' },
-  { id: 2, title: 'Black lives matter', href: '#' },
-  { id: 3, title: 'Style', href: '#' },
-  { id: 4, title: 'Sneakers', href: '#' },
+  { id: 1, title: 'Latest', href: '/' },
+  { id: 2, title: 'Black lives matter', href: '/' },
+  { id: 3, title: 'Style', href: '/' },
+  { id: 4, title: 'Sneakers', href: '/' },
 ]
 
 const Navigation = (): JSX.Element => {

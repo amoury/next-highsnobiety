@@ -24,6 +24,7 @@ const Section = ({ title, edge, children }: TProps): JSX.Element => {
 const SSection = styled.section<TSectionBorder>`
   ${({ edge, theme }) => !!edge && `border-${edge}: 1px solid ${theme.colors.darkgray}`};
   padding: 10px 0;
+  width: 100%;
 `;
 
 const Content = styled.div`
