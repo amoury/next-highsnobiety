@@ -1,3 +1,5 @@
+import { GetStaticProps } from 'next'
+
 import styled from 'styled-components';
 import ProductDetail from '@components/ProductDetail';
 
@@ -25,3 +27,10 @@ const ListingSection = styled(Section)<TListingSectionDir>`
   flex-direction: ${({ dir = 'row' }) => dir};
   justify-content: ${({ dir = 'row' }) => dir === 'row' && 'space-between'};
 `;
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const response = await api.get('products');
+//   return {
+//     props: {productsData: response.data}
+//   }
+// }

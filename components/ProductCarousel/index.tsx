@@ -16,7 +16,6 @@ const ProductCarousel = ({ products }: TProps): JSX.Element => {
   
   useEffect(() => {
     calculateSlideWidth(); 
-    console.log('runnign .......')
   }, []);
 
   const calculateSlideWidth = () => {
@@ -28,7 +27,7 @@ const ProductCarousel = ({ products }: TProps): JSX.Element => {
 
 
   return (
-    <Carousel style={{ width: '1200px'}}>
+    <Carousel>
       <NavBtn onClick={() => currentScrollStep > 0 && setCurrentScrollStep(currentScrollStep - 1)}>
         <PrevBtn size={20} />
       </NavBtn>
@@ -36,7 +35,7 @@ const ProductCarousel = ({ products }: TProps): JSX.Element => {
         <Slides ref={slideTrackRef} shiftBy={-(widthPerSlide * currentScrollStep)}>
           {products.map((product, i) => (
             <Slide key={i}>
-              <ProductCard image={product.image} title={product.title} price={product.price} />
+              <ProductCard product={product} />
             </Slide>
           ))}
         </Slides>
@@ -53,7 +52,7 @@ const Carousel = styled.div`
   grid-template-columns: 20px 1fr 20px;
   align-items: center;
   height: 500px;
-
+  max-width: 100%;
   margin-top: 100px;
 `;
 
@@ -68,6 +67,7 @@ const Slides = styled.div<{ shiftBy: number }>`
   grid-template-columns: repeat(8, calc(33.33%)); 
   position: absolute;
   width: 100%;
+  max-width: 100%;
   left: ${({ shiftBy }) => `${shiftBy}px`};
   top: 0;
   transition: all 0.3s ease-in;

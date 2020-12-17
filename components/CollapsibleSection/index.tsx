@@ -58,8 +58,9 @@ const Title = styled.span`
 `;
 
 const Content = styled.div`
-  font-family: ${({ theme }) => theme.fonts.light};
-  font-size: 15px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: 14px;
+  line-height: 20px;
   padding-top: 10px;
 
   p {

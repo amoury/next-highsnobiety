@@ -7,4 +7,18 @@ const api = new WooCommerceRestApi({
   version: "wc/v3"
 });
 
+// http://localhost:8080/wp-json/wp/v2/static-pages
+
+export const fetchProducts = async (): Promise<any> => {
+  return api.get('products');
+}
+
+export const fetchProductById = async (productId: number): Promise<any> => {
+  return api.get(`products/${productId}`);
+}
+
+export const fetchShippingDetailsByProduct = async (productId: number): Promise<any> => {
+  return api.get(`products/shipping_classes/${productId}`);
+}
+
 export default api;

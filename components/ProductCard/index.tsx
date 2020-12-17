@@ -1,24 +1,34 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
-type TProductCardProps = {
+type TProduct = {
+  id: number;
   image: string;
   title: string;
   price: number;
+  slug?: string;
 }
 
-const ProductCard = ({ image, title, price }: TProductCardProps): JSX.Element => {
+type TProductCardProps = {
+  product: TProduct;
+}
+
+const ProductCard = ({ product }: TProductCardProps): JSX.Element => {
+  const { image, title, price, slug, id } = product;
   return (
     <Card>
-      <a href="#">
-        <ImageWrapper>
-          <Image src={image} alt="Jacket" layout="responsive" width={200} height={250} />
-        </ImageWrapper>
-        <Details>
-          <Title>{title}</Title>
-          <Price>{`$${price} USD`}</Price>
-        </Details>
-      </a>
+      <Link href={`/shop/product/${id}/${slug}`}>
+        <a>
+          <ImageWrapper>
+            <Image src={image} alt="Jacket" layout="responsive" width={200} height={250} />
+          </ImageWrapper>
+          <Details>
+            <Title>{title}</Title>
+            <Price>{`$${price} USD`}</Price>
+          </Details>
+        </a>
+      </Link>
     </Card>
   )
 }
@@ -36,7 +46,7 @@ const Details = styled.div`
 `;
 
 const Title = styled.span`
-  font-family: ${({ theme }) => theme.fonts.regular };
+  font-family: ${({ theme }) => theme.fonts.bold };
   font-size: 14px;
 `;
 
@@ -44,6 +54,7 @@ const Price = styled.span`
   display: block;
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.regular};
+  color: #8c8c8c;
 `;
 
 export default ProductCard

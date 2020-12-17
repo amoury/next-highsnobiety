@@ -1,22 +1,48 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import useSWR from 'swr'
 import Button from '@components/Button';
+import _get from 'lodash/get';
 import CollapsibleSection from '@components/CollapsibleSection';
+import { TProduct } from '@customTypes/product';
+import sanitizeHtml  from '@utils/sanitizeHtml';
+import { fetchShippingDetailsByProduct } from '@utils/api';
 
-const ProductDetail = () => {
+type TProps = {
+  detail: TProduct;
+}
+
+const ProductDetail = ({ detail }: TProps) => {
+  if (!detail) return <div />
+  console.log('detail ', detail);
+
+  const productDetails = _get(detail, 'acf.product_details', '');
+  const shippingClassId = _get(detail, 'shipping_class_id');
+  const isOOS = _get(detail, 'stock_status') === 'outofstock';
+  let shippingDescription = '';
+
+  if(shippingClassId > 0) {
+    const { data } = useSWR(`/products/shipping_classes/${shippingClassId}`, () => fetchShippingDetailsByProduct(shippingClassId));  
+    shippingDescription = _get(data, 'data.description');
+  }
+
   return (
     <Container>
-      <ImageWrapper>
-        <Image src="/assets/img/products/1_t-shirt.jpg" width={379} height={473} layout='responsive' />  
-      </ImageWrapper>
-
-      <ImageWrapper>
-        <Image src="/assets/img/products/2_t-shirt.jpg" width={379} height={473} layout='responsive' />  
-      </ImageWrapper>
+      <ImageGallery>
+        { detail?.images.map(image => (
+          <ImageWrapper key={image.id}>
+            <Image src={image.src} width={379} height={473} layout='responsive' />  
+          </ImageWrapper>
+        ))}
+      </ImageGallery>
 
       <Details>
-        <Title>ADIDAS X WALES BONNER - TEE LIGHT BLUE</Title>
-        <Price>$100 USD</Price>
+        <Title>{detail.name}</Title>
+        <Price>{`$${detail.price} USD`}</Price>
+        
+        {!!detail.description && 
+          <Description dangerouslySetInnerHTML={{ __html: sanitizeHtml(detail.description)}}/>
+        }
 
         <Inner>
           <SelectField>
@@ -31,15 +57,17 @@ const ProductDetail = () => {
           </SelectField>
 
           <CTAContainer>
-            <Button title='Add to Bag' disabled />
+            <Button title={isOOS ? 'Out of stock' : 'Add to Bag'} disabled={isOOS} />
           </CTAContainer>
         </Inner>
 
         <AdditionalInfo>
-          <CollapsibleSection title="Editor's Notes" content="adidas Originals and Wales Bonner have come together to present their first collaborative collection, having first been previewed on the runway during London Fashion Week in January 2020. Inspired by the designer’s own Jamaican heritage, the collection features a short sleeve tee."/>
+          {!!detail.short_description && 
+            <CollapsibleSection title="Editor's Notes" html={detail.short_description} />
+          }
           <CollapsibleSection title="Size &amp; Fit" content="Order your regular ADIDAS size."/>
-          <CollapsibleSection title="Product Detials" content="Light blue. Cotton-blend. Round neck. Embroidered logo at the chest. Short sleeves. Side stripe detailing. Straight hem. 70% cotton, 30% polyester."/>
-          <CollapsibleSection title="Shipping" html={`<ul style="list-style:none; padding: 0; font-family: 'Univers-regular'; font-size: 14px"><li>Standard<br>Delivery in 2-5 working days. Delivery times may vary for pre-order items</li><li class="shippingMethod___3bRfY" style="padding-top: 20px;">Free shipping over 280 USD<br>We ship to your door; any additional import charges such as duties will be taken care of by us.</li></ul>`} />
+          {productDetails && <CollapsibleSection title="Product Details" html={productDetails} />}
+          {!!shippingDescription && <CollapsibleSection title="Shipping" content={shippingDescription} />}
         </AdditionalInfo>
       </Details>
    
@@ -51,14 +79,27 @@ const AdditionalInfo = styled.div`
   margin-top: 40px;
 `;
 
-const ImageWrapper = styled.div``;
-
-
 const Container = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 40px;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 30px;
+`;
+
+const ImageGallery = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+`;
+
+const ImageWrapper = styled.div``;
+
+const Description = styled.div`
+  p {
+    font-family: ${({ theme }) => theme.fonts.regular};
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 const CTAContainer = styled.div`
