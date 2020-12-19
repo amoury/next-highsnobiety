@@ -21,7 +21,7 @@ const ProductCard = ({ product }: TProductCardProps): JSX.Element => {
       <Link href={`/shop/product/${id}/${slug}`}>
         <a>
           <ImageWrapper>
-            <Image src={image} alt="Jacket" layout="responsive" width={200} height={250} />
+            <Image src={image} alt={product.title} layout="responsive" width={200} height={250} />
           </ImageWrapper>
           <Details>
             <Title>{title}</Title>

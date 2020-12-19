@@ -14,8 +14,7 @@ type TProps = {
 
 const ProductDetail = ({ detail }: TProps) => {
   if (!detail) return <div />
-  console.log('detail ', detail);
-
+  
   const productDetails = _get(detail, 'acf.product_details', '');
   const shippingClassId = _get(detail, 'shipping_class_id');
   const isOOS = _get(detail, 'stock_status') === 'outofstock';
