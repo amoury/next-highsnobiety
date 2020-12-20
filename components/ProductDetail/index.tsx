@@ -89,6 +89,7 @@ const ImageGallery = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 30px;
+  grid-auto-rows: min-content;
 `;
 
 const ImageWrapper = styled.div``;
