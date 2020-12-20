@@ -1,14 +1,16 @@
 import { useForm } from "react-hook-form";
 import Input from '@components/Input'
 import Button from "@components/Button";
+import { TRegisterCustomer } from "@customTypes/customer";
 
 type TProps = {
   buttonText: string;
+  onSubmit: (data: TRegisterCustomer) => void;
 }
 
-const AuthForm = ({ buttonText }: TProps): JSX.Element => {
+const AuthForm = ({ buttonText, onSubmit }: TProps): JSX.Element => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  // const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

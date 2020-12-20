@@ -23,6 +23,7 @@
       "@utils/*": ["./utils/*"],
       "@styles/*": ["./styles/*"],
       "@customTypes/*": ["./types/*"],
+      "@contexts/*": ["./contexts/*"],
     }
   },
   "include": [

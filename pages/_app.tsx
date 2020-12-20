@@ -3,15 +3,18 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 import GlobalStyle from  '../styles/global';
 import PageLayout from '@components/Layout/Page';
+import { AuthProvider } from '@contexts/AuthContext';
 
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <PageLayout>
-        <Component {...pageProps} />
-      </PageLayout>
+      <AuthProvider>
+        <PageLayout>
+          <Component {...pageProps} />
+        </PageLayout>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

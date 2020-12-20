@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-
+import { fetchAllCustomers } from '@utils/api'
 import styled from 'styled-components';
 import ProductDetail from '@components/ProductDetail';
 
@@ -29,7 +29,8 @@ const ListingSection = styled(Section)<TListingSectionDir>`
 `;
 
 // export const getStaticProps: GetStaticProps = async () => {
-//   const response = await api.get('products');
+//   const response = await fetchAllCustomers();
+//   console.log(response);
 //   return {
 //     props: {productsData: response.data}
 //   }

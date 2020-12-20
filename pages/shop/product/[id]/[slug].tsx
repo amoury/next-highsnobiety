@@ -9,8 +9,6 @@ import { PrevBtn } from 'icons';
 const ProductDetailPage = ({ productData }) => {
   const router = useRouter();
 
-  console.log(router);
-
   if (!productData) return <p>Loading...</p>
   return (
     <PageWrapper>
